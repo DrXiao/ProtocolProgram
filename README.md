@@ -17,8 +17,8 @@ int main(int argc, char **argv);
 
 ### 終端機呼叫程式
 ```
-gcc -o main main.c
-./main 123 para
+$ gcc -o main main.c
+$ ./main 123 para
 ```
 * 以終端機執行指令時，開頭的第一個單詞即是「程式名字」，
 如上述 gcc, main 等
