@@ -34,7 +34,7 @@ $ ./main 123 para
         * 對```gcc -o main main.c```來說
             * argc = 4
             * argv = { "gcc", "-o", "main", "main.c" } 
-    * 不需要傳遞的參數時，則可使用```cint main(void)```
+    * 不需要傳遞的參數時，則可使用```int main(void)```
 
 ### 別再用 system("pause")
 * <stdlib.h> 內的 system 函式，其含義是呼叫並執行系統的某個程式
