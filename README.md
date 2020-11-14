@@ -27,12 +27,14 @@ $ ./main 123 para
 * 第一個單詞(程式名字)打完後，若在後面，以空白隔開，再打上其它東西，就都叫做「參數」，參數會傳給第一個單詞所呼叫程式
     * 將參數傳給呼叫的程式是怎麼運作的？ 這之中的過程就是OS會幫我們處理 (~~當然是我懶的講，也還不會：|~~)
     * 而附加的參數，通通會被當成「字串」，傳給呼叫的程式
+    * **包含開頭的程式名字，也會傳進參數裡頭**
     * 因此，使用 ```int main(int argc, char **argv)```時，就是為了接收傳遞的參數
         * argc為參數的「數量」，意涵是 argument count
         * argv儲存所有的參數(字串形式)，意涵是 argument vector
         * 對```gcc -o main main.c```來說
-            * argc = 3
-            * argv = { "-o", "main", "main.c" } 
+            * argc = 4
+            * argv = { "gcc", "-o", "main", "main.c" } 
+    * 不需要傳遞的參數時，則可使用```cint main(void)```
 
 ### 別再用 system("pause")
 * <stdlib.h> 內的 system 函式，其含義是呼叫並執行系統的某個程式
@@ -46,9 +48,20 @@ $ ./main 123 para
              fgetc(stdin)
 ```
 
-### stdin, stdout, stderr
+### Standard Stream - stdin, stdout, stderr
+* Stream 扮演的角色
+    * Computer Program $<--->$ **Stream** $<--->$ Computer Enviornment
+    * 換言之，執行程式時，有三大層面的事情，「程式」、「環境」，第三層面則是「Stream」了
+
+* Reference
+    * Standard Stream 被 Linux 視為檔案
+        * https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/
+    * Wiki 對 Standard Stream 的解釋
+        * https://en.wikipedia.org/wiki/Standard_streams
 
 ### To be continued...
 
 ## Linux
 ### Unix time
+
+### Every thing is a file
