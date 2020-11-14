@@ -3,12 +3,13 @@
 * 提供少許必要之C語言、Linux知識，以便了解程式運作
 
 ## C 語言
-### 真正的 main function 與 終端機呼叫程式
+### 真正的 main function
 ```c
 int main(void);
 int main(int argc, char **argv);
 ```
 * 對於一個走在「正式C語言規格」上的主程式來說，main 理應宣告成上述兩種形式其中一種，才是一個正式的C語言程式
+### 終端機呼叫程式
 ```
 gcc -o main main.c
 ./main 123 para
@@ -24,6 +25,8 @@ gcc -o main main.c
         * argc為參數的「數量」，意涵是 argument count
         * argv儲存所有的參數(字串形式)，意涵是 argument vector
         * 對```gcc -o main main.c```來說
+            * argc = 3
+            * argv = { "-o", "main", "main.c" } (不過要記得 argv 實際上是一個 pointer to pointer to char)
 
 
 ## Linux
