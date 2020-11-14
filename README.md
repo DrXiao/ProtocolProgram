@@ -51,9 +51,25 @@ $ ./main 123 para
 ```
 
 ### Standard Stream - stdin, stdout, stderr
-* Stream 扮演的角色
+* Standard Stream 扮演的角色
     * Computer Program <———> **Stream** <———> Computer Enviornment
     * 換言之，執行程式時，有三大層面的事情，「程式」、「環境」，第三層面則是「Stream」了
+* Standard Stream 其實就是一個溝通的「頻道」，當有資料的「流動」時，由 Standard Stream 在「程式」與「環境」兩層面之間，負責資料的「傳遞」
+* 三大 Input/Output Stream
+    * Standard Input - **stdin**
+        * 意旨是：輸入至程式的資料
+        * 而輸入可以從「檔案」或者「鍵盤」而來，預設會是「**鍵盤**」
+    * Standard Output - **stdout**
+        * 意含是：從程式輸出的資料
+        * 輸出可以寫入到「檔案」內，或者顯示在「終端機」上，預設會是「**終端機**」
+    * Standard Error - **stderr**
+        * 也是一種輸出的Stream，但有別於 stdout ，是為了輸出「Error message」而獨立出來的
+        * 同stdout，預設是輸出錯誤訊息置「**終端機**」上
+    * C 語言的 stdin, stdout, stderr，就是指以上三者
+* Linux 上，由於一切事物皆為「檔案」，因此 Linux 上以C語言，使用I/O Stream 時，就如同你使用```FILE *FilePtr = fopen("file.txt", "r")```的道理，是很像的
+    * 使用 I/O Stream，其實原理都是以一個**指標**，指向 Stream，並做 輸入/輸出 的動作
+    * 輸入就「像」是```fopen("stdin", "w")```，對 stdin 寫入資料
+    * 輸出就「像」是```fopen("stdout", "r")```，從 stdout 讀取資料
 
 * Reference
     * Standard Stream 被 Linux 視為檔案
