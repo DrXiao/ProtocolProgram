@@ -50,7 +50,7 @@ $ ./main 123 para
 
 ### Standard Stream - stdin, stdout, stderr
 * Stream 扮演的角色
-    * Computer Program $ <---> $ **Stream** $ <---> $ Computer Enviornment
+    * Computer Program <———> **Stream** <———> Computer Enviornment
     * 換言之，執行程式時，有三大層面的事情，「程式」、「環境」，第三層面則是「Stream」了
 
 * Reference
