@@ -36,7 +36,7 @@ gcc -o main main.c
 
 ### 別再用 system("pause")
 * <stdlib.h> 內的 system 函式，其含義是呼叫並執行系統的某個程式
-* 我們常在Windows下，執行 system("pause") ，實際上是，在程式執行到一半時，去呼叫Windows下的 pause 程式，才得以達到「暫停」的效果
+* 我們常在Windows下，執行 ```system("pause")``` ，實際上是，在程式執行到一半時，去呼叫Windows下的 pause 程式，才得以達到「暫停」的效果
 * Linux 沒有 pause 這種東西R，若在Linux下環境下寫C語言，需要有暫停的效果，應採用其它方案，如下列方案其中一種
     * ```getc()```
     * ```fgetc(stdin)```
