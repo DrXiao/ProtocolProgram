@@ -181,7 +181,13 @@ int main(int argc, char **argv) {
         if (responseValue == 0) continue;
 
         /*
+         * Getting Unix time from header, converting Unix time 
+         * to local time and showing the relative message about header.
          * 
+         * locoltime_r :    Let the information of time_t type be 
+         *                  converted to a representation of tm type.
+         * strftime :   Converting the information of tm type to a string representataion
+         *              by passing a buffer, buffer size, and a pointer to tm type.
          * 
          * */
         localUnixTimevalSec = packetHeader->ts.tv_sec;
