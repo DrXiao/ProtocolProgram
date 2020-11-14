@@ -26,7 +26,6 @@ gcc -o main main.c
         * argv儲存所有的參數(字串形式)，意涵是 argument vector
         * 對```gcc -o main main.c```來說
             * argc = 3
-            * argv = { "-o", "main", "main.c" } (不過要記得 argv 實際上是一個 pointer to pointer to char)
-
+            * argv = { "-o", "main", "main.c" } 
 
 ## Linux
