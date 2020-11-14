@@ -12,7 +12,6 @@
     fgetc(stdin)
 
 int main(int argc, char **argv) {
-
     char errbuf[PCAP_ERRBUF_SIZE];
     int numberOfDevs = 0;
     pcap_if_t *allDevs;
