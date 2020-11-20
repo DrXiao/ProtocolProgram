@@ -77,9 +77,95 @@ $ ./main 123 para
     * Wiki 對 Standard Stream 的解釋
         * https://en.wikipedia.org/wiki/Standard_streams
 
+### 真正的 scanf, printf ——> sscanf, fprintf
+
+
 ### To be continued...
 
 ## Linux
+### Linux 的誕生
+* **Unix** 作業系統
+    * 在 Linux 誕生之前，就已經有一套廣受喜愛的作業系統 - **Unix** 作業系統，它是屬於**商業用**的作業系統，其強大的地方在於「**伺服器的應用**」
+    * 從 **貝爾實驗室 (Bell Lab)** 與 **AT&T 公司** 創造出來的產物
+    * 有一群人想要使用 Unix 作業系統，可是在當時候是要付費才能取得，於是群雄並起，讓這一群人想要創造免費的作業系統，並且讓其使用上很接近於使用 Unix。
+        * 這樣的理想導致了許多著名的作業系統誕生了，並且這些作業系統可大致統稱為**類 Unix 作業系統 (Unix-like OS)**
+        * 主打 **開源**、**免費** 等使用特色
+
+* **GNU 計畫 (GNU Project)** —— 一位想實現 Unix-like OS 的大神
+    * 一位全名叫 **Richard Matthew Stallman** 的大神，創立了 GNU 計畫，目的就是要創造一個名為 **GNU** 的作業系統
+    * 這位大神在發展期間，便創造一堆神奇工具，著名的工具，舉例而言便是
+        * **G**NU **C**ompiler **C**ollection - **GCC**
+        * **G**NU **D**e**b**ugger - **GDB**
+    * 創立了 **GNU General and Public Licenses** -- **GPL**
+        * 明文規定說，使用此條例下的軟體，使用者可以擁有什麼權力
+        * 基本權力
+            * 執行 - **Run**
+            * 研究 - **Study**
+            * 分享 - **Share**
+            * 修改 - **Modify**
+* **Linux** 誕生
+    * 另一位大神 **Linus Torvalds** 在大學期間，自創了一套作業系統，就是後來的 Linux 作業系統，於是也就有了所謂的 **Linux Kernel**
+    * 慢慢發展作業系統的期間，後來用了很多 **GNU** 的軟體，也就導致後來有了「**GNU / Linux**」的說法出現，但現今還是多以「**Linux**」稱呼這套作業系統
+    * **Linux Distribution (Linux 發行版)** ＝ 軟體 + Linux Kernel + Documentation 
 ### Unix time
+* Unix time 的定義是「自**格林威治時間** 1970 年 1 月 1 日 0 時 0 分 0 秒 開始，累積至現今當下的**秒數**」，就叫做 Unix time
+* 在 C 語言 ```<time.h>``` 中，有名為 ```timeval```的結構(```struct```)，就可以拿它來紀錄 Unix time
+```c
+struct timeval {
+    time_t tv_sec;                  // 秒
+    time_t susecond_t tv_usec;      // 微秒
+}
+```
+* 透過 ```localtime_r```，可以把```timeval```的```tv_sec```，轉換成另一種結構
+```c
+struct tm
+{
+  int tm_sec;			/* Seconds.	[0-60] (1 leap second) */
+  int tm_min;			/* Minutes.	[0-59] */
+  int tm_hour;			/* Hours.	[0-23] */
+  int tm_mday;			/* Day.		[1-31] */
+  int tm_mon;			/* Month.	[0-11] */
+  int tm_year;			/* Year	- 1900.  */
+  int tm_wday;			/* Day of week.	[0-6] */
+  int tm_yday;			/* Days in year.[0-365]	*/
+  int tm_isdst;			/* DST.		[-1/0/1]*/
+
+# ifdef	__USE_MISC
+  long int tm_gmtoff;		/* Seconds east of UTC.  */
+  const char *tm_zone;		/* Timezone abbreviation.  */
+# else
+  long int __tm_gmtoff;		/* Seconds east of UTC.  */
+  const char *__tm_zone;	/* Timezone abbreviation.  */
+# endif
+};
+```
+* 那為什麼要這麼囉哩囉唆這些事情呢？ 因為在 ex1-PktGet 中，就有使用到這些傢伙，詳細的再自己看了
+```c
+// ex1-PktGet - main.c
+while ((responseValue = pcap_next_ex(devAdapterHandler, &packetHeader,
+                                         &packetData) >= 0)) {
+        /* 
+         * If responseValue is zero, it comes across timeout and continues to
+         * capture next packet
+         * */
+        if (responseValue == 0) continue;
+
+        /*
+         * Getting Unix time from header, converting Unix time 
+         * to local time and showing the relative message about header.
+         * 
+         * locoltime_r :    Let the information of time_t type be 
+         *                  converted to a representation of tm type.
+         * strftime :   Converting the information of tm type to a string representataion
+         *              by passing a buffer, buffer size, and a pointer to tm type.
+         * 
+         * */
+        localUnixTimevalSec = packetHeader->ts.tv_sec;
+        localtime_r(&localUnixTimevalSec, &localTime);
+        strftime(timeStr, sizeof(timeStr), "%H:%M:%S", &localTime);
+        printf("%s, %.6ld len:%d\n", timeStr, packetHeader->ts.tv_usec,
+               packetHeader->len);
+    }
+```
 
 ### Every thing is a file

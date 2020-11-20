@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
      * 
      * responseValue :  We will capture packets by another function called pcap_next_ex
      *                  For the function, it returns a value and responseValue catch the returned value.
-     *                  represented whether capturin packets successfully or not.
+     *                  represented whether capturing packets successfully or not.
      * 
      * localTime : Using it to record the local time of your machine.
      * 
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
      * So, we use devAdapterHandler to get the returned pointer to pcap_t, and
      * we can capture the packets from this network device that we selected.
      *
-     * ~~ An easy idea to understanding ~~
+     * ~~ An easy idea for understanding ~~
      * You can imagine that the function returns the network 'adapter' and we
      * use a handler to listen in on the selected device.
      * 
