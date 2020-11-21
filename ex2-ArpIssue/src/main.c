@@ -148,7 +148,7 @@ char *myPcap_GetDevice(int defn, pcap_if_t **allDevs) {
     char buf[MAX_LINEBUF];
 
     if (pcap_findalldevs(allDevs, errbuf) == -1) {
-        fprintf(stderr, "Errpr in pcap_findalldevvs: %s\n", errbuf);
+        fprintf(stderr, "Error in pcap_findalldevs: %s\n", errbuf);
         return NULL;
     }
 
