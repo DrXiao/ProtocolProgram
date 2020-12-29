@@ -77,7 +77,7 @@ $ ./main 123 para
     * Wiki 對 Standard Stream 的解釋
         * https://en.wikipedia.org/wiki/Standard_streams
 
-### 真正的 scanf, printf ——> sscanf, fprintf
+### 真正的 scanf, printf ——> fscanf, fprintf
 
 
 ### To be continued...
