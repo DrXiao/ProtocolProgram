@@ -68,8 +68,17 @@ $ ./main 123 para
     * C 語言的 stdin, stdout, stderr，就是指以上三者
 * Linux 上，由於一切事物皆為「檔案」，因此 Linux 上以C語言，使用I/O Stream 時，就如同你使用```FILE *FilePtr = fopen("file.txt", "r")```的道理，是很像的
     * 使用 I/O Stream，其實原理都是以一個**指標**，指向 Stream，並做 輸入/輸出 的動作
-    * 輸入就「像」是```fopen("stdin", "w")```，對 stdin 寫入資料
-    * 輸出就「像」是```fopen("stdout", "r")```，從 stdout 讀取資料
+    * ```<stdio.h>```的宣告
+```c
+/* Standard streams.  */
+extern FILE *stdin;		/* Standard input stream.  */
+extern FILE *stdout;		/* Standard output stream.  */
+extern FILE *stderr;		/* Standard error output stream.  */
+/* C89/C99 say they're macros.  Make them happy.  */
+#define stdin stdin
+#define stdout stdout
+#define stderr stderr
+```
 
 * Reference
     * Standard Stream 被 Linux 視為檔案
